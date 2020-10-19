@@ -1,0 +1,46 @@
+button{
+    outline: none;
+    border: none;
+}
+
+.addNewTask{
+    background-color: var(--main-color)
+}
+
+.mat-primary{
+    background-color: var(--main-color)
+}
+
+.main-card{
+    background-color: rgb(240, 240, 240);
+}
+
+.mat-fab:not([class*=mat-elevation-z]), .mat-mini-fab:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px -2px 3px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+.addListButton{
+    background-color: var(--main-color)
+}
+
+.listTitle{
+    font-size: 20px;
+    word-break: break-all;
+}
+
+h2{
+    font-weight: 400;
+}
+
+.saveButton{
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.icon-menu{
+    color: rgb(38, 38, 38)
+}
+
+.menuButton{
+    margin-right: -20px;
+}

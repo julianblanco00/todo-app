@@ -1,0 +1,47 @@
+<div class="container" *ngIf="!noTasksInList">
+    <div class="row tasks mt-2" *ngFor="let item of list.tasks">
+
+        <div class="wordBreak" *ngIf="list.id == tasks[item].listId">
+            <div class="col-12 col-menu text-right position-absolute">
+                <button mat-icon-button class="mt-1" (click)="selectedTask = item" [matMenuTriggerFor]="menu" color="accent" aria-label="Example icon button with a menu icon">
+                    <mat-icon class="icon-menu">menu</mat-icon>
+                </button>
+            </div>
+            
+            <div class="col-10 mt-3" >
+                <h3 >{{ tasks[item].name }}</h3>
+            </div>
+
+            <div class="col-10 wordBreak" *ngIf="tasks[item].description">
+                <p>{{ tasks[item].description }}</p>
+            </div>
+
+            <div class="col-12 mt-1" *ngIf="tasks[item].date">
+                <h5 class="text-muted">Estimated completion date: {{ tasks[item].date }}</h5>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<mat-menu #menu="matMenu" > 
+
+    <button (click)="editTask()" mat-menu-item>
+        <button mat-mini-fab class="mr-2" data-toggle="modal" data-target="#exampleModal" color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon class="mr-0 text-white text-center">edit</mat-icon>
+        </button>
+        Edit task
+    </button>
+
+    <button (click)="deleteTask()" mat-menu-item>
+        <button mat-mini-fab class="mr-2" color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon class="mr-0 text-white text-center">delete</mat-icon>
+        </button>
+        Delete task
+    </button>
+
+</mat-menu> 
+
+<div *ngIf="noTasksInList" class="text-center">
+    <p>This list is empty, add a new task!</p>
+</div>

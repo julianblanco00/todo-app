@@ -1,0 +1,84 @@
+<div class="row mt-3 mb-5" *ngIf="noLists == 'false'">
+    <div class="col-10 col-sm-6 col-md-4 ml-auto mr-auto">
+        <mat-card class="p-2 text-center main-card" > 
+            <button mat-mini-fab (click)="openAddListModal()" class="mb-2 mt-1 addListButton" aria-label="Example icon button with a menu icon">
+                <mat-icon class="mr-0 text-white text-center">add</mat-icon>
+            </button>      
+            <h4 >Add a new list</h4>  
+        </mat-card>
+    </div>
+</div>
+    
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let list of lists">
+        
+        <mat-card class="p-2 main-card" (menu)="getOptions( $event )" > 
+                    
+            <div class="row">
+                <div class="col-10 d-flex align-items-center">
+                    <p class="listTitle pt-3">{{list.title}} </p>
+                </div>
+
+                <div class="col-12 col-menu pl-4 text-right position-absolute">
+                    <button mat-icon-button class="mt-1 menuButton" (click)="selectedList = list" [matMenuTriggerFor]="menu" color="accent" aria-label="Example icon button with a menu icon">
+                        <mat-icon class="icon-menu">menu</mat-icon>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-muted">
+                    <p class="wordBreak" *ngIf="list.comment">Description: {{ list.comment }}</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <app-tasks [newTasks]="newTasks" [tasks]="tasks" [list]="list"></app-tasks>
+
+            <hr>
+
+            <div class="text-center">
+                <button (click)="openAddTaskModal(list)" >
+                    <button mat-mini-fab class="mb-2 mr-1 addNewTask" color="primary" aria-label="Example icon button with a menu icon">
+                        <mat-icon class="text-white text-center">add</mat-icon>
+                    </button>
+                    Add a new task
+                </button>
+            </div>
+            
+        </mat-card>
+            
+    </div>
+    
+</div>
+
+<div class="row" *ngIf="noLists == 'true'">
+    <div class="col-10 mr-auto ml-auto">
+        <mat-card class="p-2 text-center main-card" > 
+            <button mat-fab (click)="openAddListModal()" class="mt-3 addListButton" aria-label="Example icon button with a menu icon">
+                <mat-icon class="mr-0 text-white text-center">add</mat-icon>
+            </button>      
+            <h2 class="mb-4 mt-3">Get started by adding a new list!</h2>  
+        </mat-card>
+    </div>
+</div>
+
+<mat-menu #menu="matMenu" > 
+
+    <button (click)="editList()" mat-menu-item>
+        <button mat-mini-fab class="mr-2" data-toggle="modal" data-target="#exampleModal" color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon class="mr-0 text-white text-center">edit</mat-icon>
+        </button>
+        Edit list
+    </button>
+
+    <button (click)="deleteList()" mat-menu-item>
+        <button mat-mini-fab class="mr-2" color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon class="mr-0 text-white text-center">delete</mat-icon>
+        </button>
+        Delete list
+    </button>
+
+</mat-menu> 

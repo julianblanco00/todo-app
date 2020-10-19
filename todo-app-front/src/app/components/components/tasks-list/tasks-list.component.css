@@ -1,0 +1,19 @@
+.tools{
+    border-radius: 20px;
+}
+
+i{
+    font-size: 18px;
+}
+
+.btn-action{
+    border-radius: 50%;
+}
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}

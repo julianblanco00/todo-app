@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root{
+    --main-color: #ff7600;
+}
+
+button:focus{
+    outline: none;
+}
+
+.saveButton{
+    background-color: var(--main-color);
+    color: #fff
+}
+
+.full-width {
+    width: 100%;
+}
+
+button{
+    outline: none;
+}
+
+.text-area{
+    min-height: 40px;
+    max-height: 120px;
+}
+
+.wordBreak{
+  word-break: break-all;
+}
+
+.mat-simple-snackbar{
+    word-break: break-all;
+}

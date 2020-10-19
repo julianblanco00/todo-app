@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="wordBreak">Delete task {{ task.name }}?</h1>
+<div mat-dialog-content>
+  <p>You can't revert this action</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="deleteTask()" class="saveButton" cdkFocusInitial>Delete</button>
+</div>

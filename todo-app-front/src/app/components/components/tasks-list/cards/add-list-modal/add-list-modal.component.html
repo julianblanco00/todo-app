@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="text-center">Add a new list</h1>
+<div mat-dialog-content>
+  <p class="text-muted text-center">Let's do it!</p>
+  
+  <hr>
+
+  <form class="mt-4">
+
+    <div *ngIf="addError" class="alert alert-danger" role="alert">
+      <p class="text-center"><strong>Error!</strong> </p> 
+      <p> <strong>Name</strong> can not be empty.</p>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>List name</mat-label>
+      <input autocomplete="off" name="inputName" matInput #inputName>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="full-width mt-2">
+      <mat-label>This list is about...</mat-label>
+      <textarea #textComment class="text-area" matInput></textarea>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button class="saveButton" (click)="validateData()">Save</button>
+    </div>
+
+  </form>
+
+</div>
