@@ -1,0 +1,33 @@
+<h1 mat-dialog-title class="text-center">Editing list {{ listData.title }}</h1>
+<div mat-dialog-content>
+  <p class="text-muted text-center">Write new data about this list</p>
+  
+  <hr>
+
+  <form class="mt-4">
+
+    <div *ngIf="editError" class="alert text-center alert-danger" role="alert">
+      <p><strong>Error!</strong> </p> 
+      <p> <strong>Name</strong> can not be empty.</p>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>List name</mat-label>
+      <input autocomplete="off" maxlength="60" name="inputName" [value]="listData.title" matInput #inputName>
+      <mat-hint align="end">{{inputName.value.length}} / 60</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="full-width mt-2">
+      <mat-label>This list is about...</mat-label>
+      <textarea #textDescription class="text-area" maxlength="128" [value]="listData.comment" matInput></textarea>
+      <mat-hint align="end">{{textDescription.value.length}} / 128</mat-hint>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button class="saveButton" (click)="updateList()">Update</button>
+    </div>
+
+  </form>
+
+</div>

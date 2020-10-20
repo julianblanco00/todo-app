@@ -1,6 +1,6 @@
 const { db } = require('../../includes/db')
 
-const updateTask = async (task, cb) => {
+const updateTask = (task, cb) => {
 
     const updatedTask = {
         date: task.date,

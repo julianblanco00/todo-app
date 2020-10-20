@@ -20,6 +20,7 @@ import { CardsComponent } from '../cards/cards.component';
 import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.component';
 import { DeleteTaskModalComponent } from './delete-task-modal/delete-task-modal.component';
 import { DeleteListModalComponent } from './delete-list-modal/delete-list-modal.component';
+import { EditListModalComponent } from './edit-list-modal/edit-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DeleteListModalComponent } from './delete-list-modal/delete-list-modal.
     EditTaskModalComponent,
     DeleteTaskModalComponent,
     DeleteListModalComponent,
+    EditListModalComponent,
   ],
   imports: [
     CommonModule,

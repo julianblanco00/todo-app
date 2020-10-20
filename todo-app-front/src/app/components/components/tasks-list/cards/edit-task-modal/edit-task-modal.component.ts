@@ -40,27 +40,35 @@ export class EditTaskModalComponent implements OnInit {
 
     (this.taskDateEl.nativeElement.value != '') ? taskDate = this.taskDateEl.nativeElement.value : taskDate = this.taskDate
 
-    const obj = {
-      name: taskName,
-      description: taskDescription,
-      date: taskDate,
-      id: this.taskData.id,
-      listId: this.taskData.listId,
-      oldName: this.oldName
+    if(taskName.trim() == ''){
+
+      this.addError = true
+
+    }else{
+
+      const obj = {
+        name: taskName.trim(),
+        description: taskDescription,
+        date: taskDate,
+        id: this.taskData.id,
+        listId: this.taskData.listId,
+        oldName: this.oldName
+      }
+  
+      this.onNoClick()
+  
+      this.service.openSnackBar(`Updating task ${this.oldName}...`, '')
+  
+      this.socket.emit('updateTask', obj, (cb:any) => {
+  
+        const updateTask = new CustomEvent('updateTask', {detail: cb})
+        dispatchEvent(updateTask)
+  
+      })
+      
+      return
     }
-
-    this.onNoClick()
-
-    this.service.openSnackBar(`Updating task ${this.oldName}...`, '')
-
-    this.socket.emit('updateTask', obj, (cb:any) => {
-
-      const updateTask = new CustomEvent('updateTask', {detail: cb})
-      dispatchEvent(updateTask)
-
-    })
     
-    return
   }
 
   onNoClick(){

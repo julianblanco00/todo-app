@@ -5,6 +5,7 @@ import { AddTaskModalComponent } from './add-task-modal/add-task-modal.component
 import { MatDialog } from '@angular/material/dialog';
 import { CardsService } from '../cards.service';
 import { DeleteListModalComponent } from './delete-list-modal/delete-list-modal.component';
+import { EditListModalComponent } from './edit-list-modal/edit-list-modal.component';
 
 export interface DialogData {
   id: string;
@@ -28,6 +29,7 @@ export class CardsComponent implements OnInit{
   
   constructor(private socket: Socket, public dialog: MatDialog, private service: CardsService) {
     this.addList()
+    this.updateList()
   }
 
   ngOnInit(){
@@ -48,21 +50,11 @@ export class CardsComponent implements OnInit{
   }
 
   openAddTaskModal(list:any){
-    const dialogRef = this.dialog.open(AddTaskModalComponent, {
-      width: '250px',
-      data: {data: list}
-    })
-
-    dialogRef.afterClosed().subscribe();
+    this.service.openModal(AddTaskModalComponent, {data: list})
   }
 
   openAddListModal(): void {
-    const dialogRef = this.dialog.open(AddModalComponent, {
-      width: '250px',
-      data: {type: 'addList'}
-    })
-
-    dialogRef.afterClosed().subscribe();
+    this.service.openModal(AddModalComponent, {type: 'addList'})
   }
 
   addList(){
@@ -85,7 +77,26 @@ export class CardsComponent implements OnInit{
   }
 
   editList(){
+    this.service.openModal(EditListModalComponent, this.selectedList)
+  }
 
+  updateList(){
+    addEventListener('updateList', (list:any) => {
+
+      this.service.closeSnackBar()
+      this.service.openSnackBar(`List ${list.detail.oldName} updated`, 'Close')
+
+      setTimeout(() => {
+        this.service.closeSnackBar()
+      }, 5000);
+
+      const updatedList = this.lists.map((e:any) => {
+        return e.id
+      }).indexOf(list.detail.id)
+
+      if (updatedList !== -1) this.lists[updatedList] = list.detail
+      
+    })
   }
 
   deleteList(){

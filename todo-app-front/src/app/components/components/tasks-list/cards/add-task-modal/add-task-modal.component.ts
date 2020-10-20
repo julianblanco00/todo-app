@@ -30,19 +30,26 @@ export class AddTaskModalComponent implements OnInit {
     const taskDescription = this.textDescription.nativeElement.value;
     const taskDate = this.taskDate.nativeElement.value
 
-    const obj = {
-      name: taskName,
-      description: taskDescription,
-      date: taskDate,
-      listId: this.listData.data.id
+    if(taskName.trim() == ''){
+
+      this.addError = true
+
+    }else{
+
+      const obj = {
+        name: taskName.trim(),
+        description: taskDescription,
+        date: taskDate,
+        listId: this.listData.data.id
+      }
+  
+      this.service.openSnackBar('Adding new task...', '')
+      this.addTask(obj)
+      
+      this.onNoClick()
+  
     }
-
-    this.service.openSnackBar('Adding new task...', '')
-    this.addTask(obj)
     
-    this.onNoClick()
-
-    return
   }
 
   addTask(data:any){

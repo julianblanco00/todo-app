@@ -1,18 +1,18 @@
 <div class="container" *ngIf="!noTasksInList">
     <div class="row tasks mt-2" *ngFor="let item of list.tasks">
 
-        <div class="wordBreak" *ngIf="list.id == tasks[item].listId">
+        <div class="tasksDiv" *ngIf="list.id == tasks[item].listId">
             <div class="col-12 col-menu text-right position-absolute">
                 <button mat-icon-button class="mt-1" (click)="selectedTask = item" [matMenuTriggerFor]="menu" color="accent" aria-label="Example icon button with a menu icon">
                     <mat-icon class="icon-menu">menu</mat-icon>
                 </button>
             </div>
             
-            <div class="col-10 mt-3" >
-                <h3 >{{ tasks[item].name }}</h3>
+            <div class="col-12 mt-3" >
+                <h3 class="wordBreak">{{ tasks[item].name }}</h3>
             </div>
 
-            <div class="col-10 wordBreak" *ngIf="tasks[item].description">
+            <div class="col-12 wordBreak text-muted" *ngIf="tasks[item].description">
                 <p>{{ tasks[item].description }}</p>
             </div>
 

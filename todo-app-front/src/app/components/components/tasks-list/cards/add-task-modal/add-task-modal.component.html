@@ -6,19 +6,20 @@
 
   <form class="mt-4">
 
-    <div *ngIf="addError" class="alert alert-danger" role="alert">
-      <p class="text-center"><strong>Error!</strong> </p> 
+    <div *ngIf="addError" class="alert text-center alert-danger" role="alert">
+      <p><strong>Error!</strong> </p> 
       <p> <strong>Name</strong> can not be empty.</p>
     </div>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Task name</mat-label>
-      <input autocomplete="off" name="inputName" matInput #inputName>
+      <input maxlength="60" autocomplete="off" name="inputName" matInput #inputName>
+      <mat-hint align="end">{{inputName.value.length}} / 60</mat-hint>
     </mat-form-field>
   
     <mat-form-field appearance="fill" class="full-width mt-2">
       <mat-label>This task is about...</mat-label>
-      <textarea #textDescription class="text-area" matInput></textarea>
+      <textarea maxlength="128" #textDescription class="text-area" matInput></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="fill">

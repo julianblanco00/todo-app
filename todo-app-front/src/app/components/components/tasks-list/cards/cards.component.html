@@ -9,11 +9,11 @@
     </div>
 </div>
     
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let list of lists">
-        
-        <mat-card class="p-2 main-card" (menu)="getOptions( $event )" > 
-                    
+<div class="mb-3">
+
+    <div class="card-columns">
+        <div class="p-2 main-card card" *ngFor="let list of lists" (menu)="getOptions( $event )" > 
+                
             <div class="row">
                 <div class="col-10 d-flex align-items-center">
                     <p class="listTitle pt-3">{{list.title}} </p>
@@ -48,12 +48,11 @@
                 </button>
             </div>
             
-        </mat-card>
-            
+        </div>
     </div>
-    
+        
 </div>
-
+    
 <div class="row" *ngIf="noLists == 'true'">
     <div class="col-10 mr-auto ml-auto">
         <mat-card class="p-2 text-center main-card" > 
