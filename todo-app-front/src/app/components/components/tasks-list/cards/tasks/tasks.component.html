@@ -1,4 +1,9 @@
-<div class="container" *ngIf="!noTasksInList">
+<div class="container">
+
+    <div *ngIf="!list.tasks.length" class="text-center col-12 mt-3">
+        <p>This list is empty, add a new task!</p>
+    </div>
+
     <div class="row tasks mt-2" *ngFor="let item of list.tasks">
 
         <div class="tasksDiv" *ngIf="list.id == tasks[item].listId">
@@ -41,7 +46,3 @@
     </button>
 
 </mat-menu> 
-
-<div *ngIf="noTasksInList" class="text-center">
-    <p>This list is empty, add a new task!</p>
-</div>

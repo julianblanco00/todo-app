@@ -10,7 +10,8 @@ const routes: Routes = [
     children:[
       { path: 'tasks-list', component: TasksListComponent},
     ] 
-  }
+  },
+  { path: '', component: TasksListComponent}
 ];
 
 @NgModule({

@@ -12,7 +12,6 @@ import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.compo
 })
 export class TasksComponent implements OnInit {
 
-  noTasksInList:boolean
   selectedTask:any
 
   @Input('list') list:any 
@@ -23,9 +22,7 @@ export class TasksComponent implements OnInit {
     this.updateTask()
   }
 
-  ngOnInit(): void {
-    if(!this.list.tasks.length) this.noTasksInList = true
-  }
+  ngOnInit(): void {}
 
   editTask(){
     this.service.openModal(EditTaskModalComponent, this.tasks[this.selectedTask])
@@ -37,8 +34,6 @@ export class TasksComponent implements OnInit {
     addEventListener('deletedTask', (data:any) => {
       const iList = this.list.tasks.indexOf(data.detail.id)
       iList !== -1 && this.list.tasks.splice( iList, 1);
-
-      if(!this.list.tasks.length) this.noTasksInList = true
 
       delete this.tasks[data.detail.id] 
 
@@ -60,10 +55,11 @@ export class TasksComponent implements OnInit {
       const id = data.detail.id
       const task = data.detail.addedTask[id]
 
-      this.list.tasks.push(id)
-      this.tasks[id] = task
-      
-      this.noTasksInList = false
+      if(this.list.id == task.listId){
+        this.list.tasks.push(id)
+        this.tasks[id] = task
+      }
+
     })
 
   }
